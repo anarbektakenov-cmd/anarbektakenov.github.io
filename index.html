@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новости ТюмГУ | Тюменский государственный университет</title>
+  <style>
+    /* CSS-стили сайта */
+    :root {
+      --primary-color: #0056b3; /* Фирменный синий цвет */
+      --secondary-color: #f4f6f9;
+      --text-color: #333;
+      --accent-color: #e63946;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Шапка сайта */
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .logo span {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      display: block;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav a {
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd166;
+    }
+
+    /* Главный контейнер */
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 30px;
+    }
+
+    /* Главная новость (Hero) */
+    .featured-news {
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+
+    .featured-news img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .featured-content {
+      padding: 20px;
+    }
+
+    .tag {
+      background-color: var(--primary-color);
+      color: white;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .date {
+      font-size: 0.85rem;
+      color: #777;
+      margin-left: 10px;
+    }
+
+    .featured-content h2 {
+      margin: 10px 0;
+      font-size: 1.8rem;
+    }
+
+    /* Сетка новостей */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .news-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px;
+    }
+
+    .card-body h3 {
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+
+    .card-body p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Сайдбар (Боковая панель) */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .widget {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .widget h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 5px;
+    }
+
+    .announcement-list {
+      list-style: none;
+    }
+
+    .announcement-list li {
+      margin-bottom: 15px;
+      border-bottom: 1px dashed #ddd;
+      padding-bottom: 10px;
+    }
+
+    .announcement-list li:last-child {
+      border: none;
+    }
+
+    .announcement-list span {
+      font-size: 0.8rem;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    .announcement-list a {
+      display: block;
+      font-weight: 500;
+      margin-top: 3px;
+    }
+
+    .announcement-list a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Подвал сайта */
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 30px 0;
+      margin-top: 40px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 10px;
+    }
+
+    .footer-section p, .footer-section a {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #444;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    /* Адаптивность под мобильные устройства */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .header-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <h1>ТюмГУ News</h1>
+        <span>Новости Тюменского государственного университета</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Главная</a></li>
+          <li><a href="#">Наука</a></li>
+          <li><a href="#">Образование</a></li>
+          <li><a href="#">Спорт</a></li>
+          <li><a href="#">Студжизнь</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Основной контент -->
+  <div class="container">
+    
+    <!-- Главная лента новостей -->
+    <main>
+      
+      <!-- Топовая новость -->
+      <article class="featured-news">
+        <img src="https://picsum.photos/800/350?random=1" alt="Главная новость">
+        <div class="featured-content">
+          <span class="tag">Наука & Экология</span>
+          <span class="date">24 Октября 2026</span>
+          <h2>Ученые ТюмГУ презентовали новые исследования экосистем Западной Сибири</h2>
+          <p>В рамках международной конференции исследователи института биологии ТюмГУ представили данные о влиянии факторной среды на устойчивость микроэкосистем...</p>
+        </div>
+      </article>
+
+      <!-- Сетка с карточками новостей -->
+      <section class="news-grid">
+        
+        <article class="news-card">
+          <img src="https://picsum.photos/400/200?random=2" alt="Новость 1">
+          <div class="card-body">
+            <span class="tag">Образование</span>
+            <span class="date">23 Октября</span>
+            <h3>Старт регистрации на новые элективы ИОТ</h3>
+            <p>Студенты старших курсов могут выбрать дополнительные дисциплины на следующий семестр через личный кабинет.</p>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="https://picsum.photos/400/200?random=3" alt="Новость 2">
+          <div class="card-body">
+            <span class="tag">Студжизнь</span>
+            <span class="date">22 Октября</span>
+            <h3>Открытие нового коворкинга в главном корпусе</h3>
+            <p>Для всех студентов стало доступно современное пространство с зонами тихой учебы, Wi-Fi и кофе-поинтом.</p>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="https://picsum.photos/400/200?random=4" alt="Новость 3">
+          <div class="card-body">
+            <span class="tag">Спорт</span>
+            <span class="date">20 Октября</span>
+            <h3>Сборная ТюмГУ одержала победу в межвузовском турнире</h3>
+            <p>Наша команда по киберспорту и баскетболу заняла призовые места на региональном этапе соревнований.</p>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="https://picsum.photos/400/200?random=5" alt="Новость 4">
+          <div class="card-body">
+            <span class="tag">Карьера</span>
+            <span class="date">19 Октября</span>
+            <h3>Ярмарка вакансий: Встреча с работодателями Тюмени</h3>
+            <p>Представители ведущих IT, экологических и промышленных компаний провели собеседования для выпускников.</p>
+          </div>
+        </article>
+
+      </section>
+    </main>
+
+    <!-- Боковая панель (Сайдбар) -->
+    <aside class="sidebar">
+      
+      <!-- Виджет объявлений -->
+      <div class="widget">
+        <h3>Важные объявления</h3>
+        <ul class="announcement-list">
+          <li>
+            <span>Срочно</span>
+            <a href="#">График сдачи зачетов и сессии опубликован в СМОД</a>
+          </li>
+          <li>
+            <span>Важно</span>
+            <a href="#">Прием заявок на повышенную государственную академическую стипендию</a>
+          </li>
+          <li>
+            <span>Событие</span>
+            <a href="#">День открытых дверей ТюмГУ пройдет
